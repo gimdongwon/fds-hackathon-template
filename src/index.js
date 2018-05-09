@@ -15,6 +15,7 @@ class TicTacToe {
   turn({ row, col }) {
     this.board[row][col] = this.player;
     this.player = this.player === "X" ? "O" : "X";
+    
   }
   // 현재 플레이어에 대한 표시르 게임판의 해당 위치에 넣어주고 현재프레이어 변경
   checkWinner() {
@@ -58,7 +59,7 @@ function draw(){
   })
   const winner = game.checkWinner();
   if(winner){
-    document.querySelector('.winner').textContent = winner;
+    document.querySelector('.winner').textContent = "최후의 승자는 바로" + winner;
   }
 }
 
