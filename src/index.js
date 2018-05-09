@@ -19,29 +19,25 @@ class TicTacToe {
   // 현재 플레이어에 대한 표시르 게임판의 해당 위치에 넣어주고 현재프레이어 변경
   checkWinner() {
     for (i = 0; i < 3; i++) {
-      if (this.board[i][0] !== null &&
-        this.board[i][0] === this.board[i][1] &&
-        this.board[i][1] === this.board[i][2]
-      ) {
+      if (this.board[i][0] !== null && this.board[i][0] === this.board[i][1] && this.board[i][1] === this.board[i][2]
+      ){
         return this.board[i][0];
       }
+      else if (this.board[0][i] !== null && this.board[0][i] === this.board[1][i] && this.board[1][i] === this.board[2][i])
+      {return this.board[0][i]}
 
+
+      else if (this.board[i][i] !== null && (this.board[0][0] === this.board[i][i] && this.board[1][1] === this.board[i][i] && this.board[2][2] ===this.board[i][i]) || 
+      this.board[0][2] === this.board[i][i] && this.board[1][1] === this.board[i][i]&& this.board[2][0] === this.board[i][i])
+        // (this.board[0][2]===this.board[1][1]&& this.board[1][1] === this.board[2][0]))
+      {return this.board[i][i]}
     }
   }
 }
 
-// const t = new TicTacToe();
-// t.turn({ row: 0, col: 0 });
-// t.turn({ row: 1, col: 1 });
-// t.turn({ row: 0, col: 2 });
-// t.turn({ row: 2, col: 2 });
-// t.turn({ row: 0, col: 1 });
-// console.log(t.board);
-// console.log(t.checkWinner());
-
 const game = new TicTacToe();
 
-const rowEls = document.querySelectorAll('.boadr__row');
+const rowEls = document.querySelectorAll('.board__row');
 rowEls.forEach((rowEl, rowIndex) => {
   const colEls = rowEl.querySelectorAll('.board__col');
   colEls.forEach((colEl, colIndex)=>{
@@ -50,12 +46,12 @@ rowEls.forEach((rowEl, rowIndex) => {
       draw();
     })
   })
-});
+})
 
 function draw(){
   game.board.forEach((rowArr, rowIndex)=>{
     const rowEl = rowEls[rowIndex];
-    const colEls = rowEls.querySelectorAll('.board__col');
+    const colEls = rowEl.querySelectorAll('.board__col');
     rowArr.forEach((col, colIndex)=>{
       colEls[colIndex].textContent = col;
     })
@@ -65,3 +61,13 @@ function draw(){
     document.querySelector('.winner').textContent = winner;
   }
 }
+
+
+// const t = new TicTacToe();
+// t.turn({ row: 0, col: 0 });
+// t.turn({ row: 1, col: 1 });
+// t.turn({ row: 0, col: 2 });
+// t.turn({ row: 2, col: 2 });
+// t.turn({ row: 0, col: 1 });
+// console.log(t.board);
+// console.log(t.checkWinner());
